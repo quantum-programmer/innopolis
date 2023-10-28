@@ -1,27 +1,14 @@
-# Условие "case _:" сделано для демонстрации кода. На практике при переводе введенной строки в int
-# мы никогда не попадем в это условие.
+global_value = 0
 
-limit = 999999999999
+def SumScopes(param):
+    ext_val = int(input("Введите значение переменной из охватывающей области: "))
 
-def Fibbonachi(n):
-    i = 0
-    x0 = 0
-    x1 = 1
-    x = 0
-    while i < n-1:
-        x = x0 + x1
-        x0 = x1
-        x1 = x
-        i += 1
-    return x
+    def inner_func(param):
+        local_val = int(input("Введите значение локальной переменной: "))
+        global global_value
+        return global_value + ext_val + param + local_val
 
-digit = int(input("Какое число последовательности Фиббоначи вы хотите узнать? - "))
-match digit:
-    case int() | float() as command if 0 <= command <= limit:
-        if command == 1:
-            x = 1
-        else:
-            x = Fibbonachi(digit)
-        print (f"Число с номером {digit} = {x}")
-    case _:
-        print (f"Введите корректный номер в последовательности Фиббоначи от 0 до {limit}")
+    return inner_func(param)
+
+global_value = int(input("Введите значение глобальной переменной: "))
+print( SumScopes(int(input("Введите значение параметра, передаваемого в функцию"))) )
