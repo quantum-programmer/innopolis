@@ -1,3 +1,4 @@
+# С использованием генератора списков
 people = [
     ["Alex", 29],
     ["Olga", 33],
@@ -6,10 +7,6 @@ people = [
     ['Petr', 40]
 ]
 
-people_1_level = list()
-for person in people:
-    for elem in person:
-        people_1_level.append(elem)
-
+people_1_level = [item for sublist in people for item in sublist]
 print (f"Исходный список списков: {people}")
 print (f"Одноуровневый список: {people_1_level}")
